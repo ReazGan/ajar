@@ -1,0 +1,18 @@
+name: ajar
+description: Find exposed, unauthenticated local AI services.
+branding:
+  icon: radio
+  color: gray-dark
+inputs:
+  target:
+    description: Host or CIDR to scan (you must be authorised).
+    default: "127.0.0.1"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-go@v5
+      with:
+        go-version: stable
+        cache: false
+    - shell: bash
+      run: go run github.com/ReazGan/ajar@latest "${{ inputs.target }}"
